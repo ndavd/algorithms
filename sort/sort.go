@@ -21,9 +21,9 @@ func Selection[T Ordered](s []T) {
       if s[j] < s[current] {
         current = j
       }
-      if current != i {
-        swap(&s[i], &s[current])
-      }
+    }
+    if current != i {
+      swap(&s[i], &s[current])
     }
   }
 }
