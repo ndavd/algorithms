@@ -1,7 +1,7 @@
 package sort
 
 import (
-	"testing"
+  "testing"
 )
 
 // Check slice equality
@@ -26,52 +26,31 @@ var sorted = []int{
   -23, -11, -4, 8, 15, 31, 36, 39, 73, 80,
 }
 
-func TestSelection(t *testing.T) {
+func testAlgorithm(t *testing.T, a func([]int), name string) {
   var test []int
   test = append(test, unsorted...)
-
-  Selection(test)
+  a(test)
   if !areEqual(test, sorted) {
-    t.Errorf("Selection() FAILED. Expected %v, got %v\n", sorted, test)
+    t.Errorf("%v() FAILED. Expected %v, got %v.\n", name, sorted, test)
   }
+}
+
+func TestSelection(t *testing.T) {
+  testAlgorithm(t, Selection[int], "Selection")
 }
 
 func TestInsertion(t *testing.T) {
-  var test []int
-  test = append(test, unsorted...)
-
-  Insertion(test)
-  if !areEqual(test, sorted) {
-    t.Errorf("Insertion() FAILED. Expected %v, got %v\n", sorted, test)
-  }
+  testAlgorithm(t, Insertion[int], "Insertion")
 }
 
 func TestBubble(t *testing.T) {
-  var test []int
-  test = append(test, unsorted...)
-
-  Bubble(test)
-  if !areEqual(test, sorted) {
-    t.Errorf("Bubble() FAILED. Expected %v, got %v\n", sorted, test)
-  }
+  testAlgorithm(t, Bubble[int], "Bubble")
 }
 
 func TestMergesort(t *testing.T) {
-  var test []int
-  test = append(test, unsorted...)
-
-  Mergesort(test)
-  if !areEqual(test, sorted) {
-    t.Errorf("Mergesort() FAILED. Expected %v, got %v\n", sorted, test)
-  }
+  testAlgorithm(t, Mergesort[int], "Mergesort")
 }
 
 func TestQuicksort(t *testing.T) {
-  var test []int
-  test = append(test, unsorted...)
-
-  Quicksort(test)
-  if !areEqual(test, sorted) {
-    t.Errorf("Quicksort() FAILED. Expected %v, got %v\n", sorted, test)
-  }
+  testAlgorithm(t, Quicksort[int], "Quicksort")
 }
